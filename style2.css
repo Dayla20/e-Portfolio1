@@ -25,6 +25,10 @@ p {
     line-height: 1.5 ;
     font-size: 16px;
 }
+
+a{
+    text-decoration: none;
+}
 li {
     list-style: none;
 }
@@ -105,6 +109,22 @@ background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
 }
+
+.wave {
+  display: inline-block;        /* Needed so transform works properly */
+  transform-origin: 70% 70%;    /* Pivot point (at the wrist area) */
+  animation: wave-hand 2s infinite;
+}
+@keyframes wave-hand {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(20deg); }
+  40% { transform: rotate(-15deg); }
+  60% { transform: rotate(20deg); }
+  80% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
 .about-me__info {
     display: flex;
     flex-direction: column;
@@ -146,7 +166,6 @@ background-color: #f8f8f8;
 .about_me--link {
     font-size: 24px;
     color: black;
-    text-decoration: none;
     padding: 0 16px;
     }
 
@@ -270,13 +289,54 @@ background-color: #f8f8f8;
 .project__description--link{
     font-size: 20px;
     margin-right: 16px;
-    text-decoration: none;
-
-}
+    }
 .project__description--title,
 .project__description--sub-title,
 .project__description--para, 
 .project__description--link {
     text-align: left;
     color: #fff;
+}
+/* FOOTER */
+footer{
+    background-color: #242424;
+}
+.footer__logo{
+    margin-bottom: 20px;
+}
+.footer__social--list{
+    width: 100%;
+    max-width: 500px;
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+.footer__row {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8% 0;
+}
+.footer__logo--img{
+   width: 70px;
+   height: 70px; 
+}
+.footer__social--link,
+.footer__copyright, 
+.footer__logo--popper {
+   color: #ffff
+}
+.footer__logo--popper {
+   position:absolute;
+   right: 0;
+   top: 30px;
+   font-weight: 700;
+}
+.footer__anchor {
+    margin-bottom: 20px;
+    position: relative;
+}
+.footer__anchor:hover .footer__logo--popper{
+    transform: translateX(60px)
 }
