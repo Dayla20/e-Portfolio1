@@ -10,7 +10,9 @@
         color: #6030b1;
         margin: 0 12px;
     }
-
+html {
+    scroll-behavior: smooth;
+}
 h1, h2, h3, h4, h5, h6, span {
     color: #242424;
     text-align: center;
@@ -20,28 +22,49 @@ h1 {
     font-size: 36px;
     font-weight: 700;
 }
-
 p {
     line-height: 1.5 ;
     font-size: 16px;
 }
-
-a{
+a {
     text-decoration: none;
+    position: relative;
+    transition: opacity 300ms ease;
+}
+a:hover {
+    opacity: 0.7;
+}
+.link__hover-effect:after {
+   content: "";
+   position: absolute;
+   height: 3px;
+   background-color: black;
+   width: 0;
+   bottom: -3px;
+   right: 0;
+   transition: all 300ms ease;
+}
+.link__hover-effect--white:after{
+    background-color:#fff;
+}
+.link__hover-effect--black:after{
+    background-color:#000;
+}
+.link__hover-effect:hover:after{
+    width: 100%;
+    left: 0;
 }
 li {
     list-style: none;
 }
 
 .flex {
-    display: flex;
-   
+    display: flex;  
 }
 
 .flex-1 {
     flex: 1;
 }
-
 .container{
  padding: 50px 0 ;
 }
@@ -49,6 +72,7 @@ li {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 12px;
 }
 
 .text--purple {
@@ -73,26 +97,24 @@ background-color: #f8f8f8;
     display: flex;
     justify-content: space-between;
     align-items: center;
-     
+    padding: 0 12px; 
 }
-.nav_link--list {
-    display: flex;
-   
+.nav__link--list {
+    display: flex;   
 }
-.nav_link--anchor {
+.nav__link--anchor {
     margin: 0 12px;
     color: #242424;
-    text-decoration: none;
     font-weight: 700;
 }
-.nav_link--anchor-primary {
+.nav__link--anchor-primary {
     background-color: #6030b1;
     padding: 8px 20px;
     border-radius: 50px;
     color: #fff;
     transition: all 300ms ease;
 }
-.nav_link--anchor-primary:hover {
+.nav__link--anchor-primary:hover {
     background-color: #5d3eff;
 }
 .personal_logo {
@@ -101,7 +123,6 @@ background-color: #f8f8f8;
     color: #6030b1;
     margin: 0 12px;
 }
-
 /* ABOUT ME*/
 
 #about_me {
@@ -109,13 +130,12 @@ background-color: #f8f8f8;
     display: flex;
     flex-direction: column;
 }
-
 .wave {
   display: inline-block;        /* Needed so transform works properly */
   transform-origin: 70% 70%;    /* Pivot point (at the wrist area) */
-  animation: wave-hand 2s infinite;
+  animation: animate-wave 500ms infinite ease-in-out;
 }
-@keyframes wave-hand {
+@keyframes animate-wave {
   0% { transform: rotate(0deg); }
   20% { transform: rotate(20deg); }
   40% { transform: rotate(-15deg); }
@@ -123,8 +143,6 @@ background-color: #f8f8f8;
   80% { transform: rotate(-10deg); }
   100% { transform: rotate(0deg); }
 }
-
-
 .about-me__info {
     display: flex;
     flex-direction: column;
@@ -136,16 +154,29 @@ background-color: #f8f8f8;
     align-items: center;
     max-width: 600px;
     margin: 0 auto;
-    text-align: center;}
-
+    text-align: center;
+}
 .about-me__picture--mask {
-    width: 80px;
+    width: 100px;
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
     margin-bottom: 28px;
+    animation: animate-profile-picture 800ms 200ms backwards;
 }
+@keyframes animate-profile-picture {
+    0% {
+      transform: scale(0);
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 /* IMPROVING MY OWN PICTURE*/
 
 .about-me__picture{
@@ -158,17 +189,32 @@ background-color: #f8f8f8;
 
 .about-me__info--title {
     margin-bottom: 16px;
+    animation: fade-up 650ms 400ms backwards;
 }
 .about-me__info--para {
     font-size: 20px;
     margin-bottom: 28px;
+    animation: fade-up 650ms 600ms backwards;
 }
 .about_me--link {
-    font-size: 24px;
+    font-size: 20px;
     color: black;
     padding: 0 16px;
     }
+.about_me--links {
+    animation: fade-up 650ms 800ms backwards;
+}
 
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .about-me__img--container{
     flex: 1;
     display: flex;
@@ -179,6 +225,15 @@ background-color: #f8f8f8;
 
 .about-me__img{
     width: 100%;
+    animation: fade-in 1200ms 800ms backwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;}
+  100% {
+    opacity: 1;
+  }  
 }
 /* TECHNOLOGY STACK*/
 
@@ -208,6 +263,7 @@ background-color: #f8f8f8;
 
 .language__list{
     display: flex;
+    justify-content: center;
     width: 100%;
     flex-wrap: wrap;    
 }  
@@ -301,9 +357,8 @@ background-color: #f8f8f8;
 footer{
     background-color: #242424;
 }
-.footer__logo{
-    margin-bottom: 20px;
-}
+   
+
 .footer__social--list{
     width: 100%;
     max-width: 500px;
@@ -332,11 +387,65 @@ footer{
    right: 0;
    top: 30px;
    font-weight: 700;
+   opacity: 0;
+   transition: all 300ms ease;
 }
 .footer__anchor {
     margin-bottom: 20px;
     position: relative;
 }
 .footer__anchor:hover .footer__logo--popper{
-    transform: translateX(60px)
+    transform: translateX(60px);
+    opacity: 1;
+}
+
+/* Small phones, tablets, large smartphones */
+@media (max-width:768px) {
+    nav{
+        height: 68px;
+    }
+    h1{
+        font-size: 28px;
+    }
+    .about-me__info--para{
+        font-size: 18px;
+    }
+    .language{
+        width: calc(100%/4);
+    }
+    .project__description--para{
+        font-size: 14px;
+    }
+    .project__description {
+        left: 30px;
+        padding-right: 30px;
+    }
+
+}
+/* Small phones*/
+@media (max-width: 480px) {
+    .nav__link:not(:last-child){
+      display: none;
+    }
+    .project__description {
+        padding: 0;
+        left: 0;
+        width: 100%;
+    }
+    .project__description--para{
+        display: none;
+    }
+    .project__description--links{
+        display: flex;
+        justify-content: center;
+    }
+    .project__description--title{
+        font-size: 32px;
+        line-height: 1;
+        text-align: center;
+    }
+    .project__description--sub-title{
+        text-align: center;
+        margin: 12px 0;
+    }
 }
